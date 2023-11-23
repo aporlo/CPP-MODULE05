@@ -25,6 +25,7 @@ class Bureaucrat
 
 		void	increase(void);
 		void	decrease(void);
+		void	setGrade(int grade);
 
 		class GradeTooLowException : public std::exception
 		{
