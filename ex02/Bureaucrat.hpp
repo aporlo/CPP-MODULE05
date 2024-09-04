@@ -3,10 +3,15 @@
 
 #include <iostream>
 #include <string>
+#include "AForm.hpp"
 
 # define LRED	"\033[0;91m"
 # define RESET	"\033[0m"
 # define YELLOW	"\033[0;33m"
+# define GREEN	"\033[0;32m"
+
+
+class AForm;
 
 class Bureaucrat
 {
@@ -30,6 +35,8 @@ class Bureaucrat
 		void	increase(void);
 		void	decrease(void);
 		void	setGrade(unsigned int grade);
+		void	signForm(AForm & form);
+		void	executeForm(AForm & form);
 
 		class GradeTooLowException : public std::exception
 		{

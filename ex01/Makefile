@@ -4,7 +4,7 @@ CPPFLAGS = -std=c++98 -Wall -Wextra -Werror
 
 BUILD_DIR = build
 
-SRCS =	main.cpp Bureaucrat.cpp
+SRCS =	main.cpp Bureaucrat.cpp Form.cpp
 
 OBJS = $(SRCS:%.cpp=$(BUILD_DIR)/%.o)
 
