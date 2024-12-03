@@ -1,4 +1,4 @@
-#include "Intern.cpp"
+#include "Intern.hpp"
 
 
 Intern::Intern()
@@ -13,43 +13,34 @@ Intern::Intern(Intern const & src)
 	return;
 }
 
-Intern::~Intern(){}
+Intern::~Intern(void)
+{
+}
 
 Intern & Intern::operator=(Intern const &ref)
 {
-	if (this == &ref)
-		return (*this);
+	(void) ref;
 	return (*this);
 }
 
-static AForm	*makePresident(const std::string target)
+AForm	*Intern::makeForm(const std::string form_create, const std::string target_form)
 {
-	return (new PresidentialPardonForm(target));
-}
-
-static AForm	*makeRobot(const std::string target)
-{
-	return (new RobotomyRequestForm(target));
-}
-
-static AForm	*makeShrubbery(const std::string target)
-{
-	return (new ShrubberyCreationForm(target));
-}
-
-AFrom	*Intern::makeForm(const std::string form_create, const std::string target_form)
-{
-	AForm *(*allForms[])(const std::string target) = {&makePresident, &makeRobot, &makeShrubbery};
-	std::string forms[] = {"PresidentialPardonForm", "RobotomyRequestForm", "ShrubberyCreationForm"};
-
-	for (int i = 0; i < 3, i++)
+	AForm *all_forms[3] = {new PresidentialPardonForm(target_form), new RobotomyRequestForm(target_form) , new ShrubberyCreationForm(target_form)};
+	std::string forms[3] = {"presidential pardon", "robotomy request", "shrubbery creation"};
+	for (int i = 0; i < 3; i++)
 	{
 		if (form_create == forms[i])
 		{
-			std::cout << "Intern creates" << form_create << std::endl;
-			return (allForms[i](target_form));
+			std::cout << GREEN << "Intern creates" << form_create << RESET << std::endl;
+			for (int j = 0; j < 3; j++) {
+				if (j != i) {
+					delete all_forms[j];
+				}
+			}
+			return (all_forms[i]);
 		}
 	}
+	for (int i = 0; i < 3; i++) {delete all_forms[i];}
 	std::cout << LRED << "Intern can't create a form called" << form_create << RESET << std::endl;
 	return (NULL);
 }

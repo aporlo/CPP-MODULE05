@@ -22,7 +22,7 @@ class AForm
 
 		AForm(std::string name, int signGrade, int execGrade);
 		AForm(AForm const & src);
-		~AForm(void);
+		virtual ~AForm(void);
 
 		AForm &operator=(AForm const &ref );
 

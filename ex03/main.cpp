@@ -1,51 +1,31 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
+// #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "ShrubberyCreationForm.hpp"
+#include "Intern.hpp"
 
 int	main()
 {
-	ShrubberyCreationForm shrub("shrub");
-	RobotomyRequestForm	robot("robot");
-	PresidentialPardonForm pardon("pardon");
-	Bureaucrat a("A", 25);
-	Bureaucrat b("B", 72);
-	Bureaucrat c("C", 145);
-	{
-		try
-		{
-			std::cout<< a << std::endl;
-			std:: cout<< shrub << std::endl;
-			std:: cout<< pardon << std::endl;
-			c.executeForm(shrub);
-			b.executeForm(robot);
-			a.executeForm(pardon);
-			std::cout<< a << std::endl;
-			std::cout<< b << std::endl;
-			std::cout<< c << std::endl;
-			std:: cout<< shrub << std::endl;
-			std:: cout<< pardon << std::endl;
-			std::cout <<"..................1.............\n\n";
+		Intern	somRandomIntern;
+		AForm*	rrf;
+		AForm*	rrr;
 
-			shrub.beSigned(b);
-			a.executeForm(shrub);
+		rrf = somRandomIntern.makeForm("robotomy request", "Bender");
+		rrr = somRandomIntern.makeForm("presidential p pardon", "Aporlo");
+		std::cout << *rrf << std::endl;
 
-			std::cout <<"..................2.............\n\n";
-			robot.beSigned(c);
-			pardon.beSigned(c);
-			c.executeForm(shrub);
-			std::cout <<"...................4............\n\n";
-			c.executeForm(robot);
-			std::cout <<"....................5...........\n\n";
-			c.executeForm(pardon);
+		Bureaucrat	a = Bureaucrat("A", 1);
+		a.signForm(*rrf);
+		a.executeForm(*rrf);
 
-		}
-		catch(const std::exception& e)
-		{
-			std::cout << e.what() << std::endl;
-		}
+		rrf->execute(a);
 
-	}
+		std::cout << *rrf << std::endl;
+		std::cout << a << std::endl;
+
+		delete rrr;
+		delete rrf;
+
 	return 0;
 }

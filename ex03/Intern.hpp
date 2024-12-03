@@ -1,7 +1,7 @@
 #ifndef INTERN_HPP
 # define INTERN_HPP
 
-#include <isostream>
+#include <iostream>
 #include <string>
 #include "AForm.hpp"
 #include "PresidentialPardonForm.hpp"
@@ -19,7 +19,8 @@ class Intern
 
 		Intern &operator=(const Intern & ref);
 
-		Form *makeForm(const std::string form, const std::string target);
+		AForm *makeForm(const std::string form, const std::string target);
 };
 
+#endif
 
